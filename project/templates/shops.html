@@ -1,0 +1,40 @@
+<!-- templates/shops.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>ショップ一覧</h2>
+<a href="{{ url_for('add_shop') }}" class="btn btn-success mb-3">ショップを追加</a>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>名前</th>
+                <th>住所</th>
+                <th>電話番号</th>
+                <th>メールアドレス</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shop in shops %}
+            <tr>
+                <td>{{ shop.id }}</td>
+                <td>{{ shop.name }}</td>
+                <td>{{ shop.address }}</td>
+                <td>{{ shop.phone }}</td>
+                <td>{{ shop.email }}</td>
+                <td>
+                    <a href="{{ url_for('edit_shop', id=shop.id) }}" class="btn btn-sm btn-info">編集</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">登録されているショップがありません</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
