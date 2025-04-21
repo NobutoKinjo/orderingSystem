@@ -1,0 +1,39 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">農家-小売店受発注システム</h1>
+    <p class="lead">このシステムでは、農家さんが生産した農作物を小売店に効率よく提供するための受発注管理を行います。</p>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">農家管理</h5>
+                    <p class="card-text">農家さんとその農作物の登録・管理</p>
+                    <a href="{{ url_for('farmers') }}" class="btn btn-primary">農家一覧</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">ショップ管理</h5>
+                    <p class="card-text">小売店の情報を登録・管理</p>
+                    <a href="{{ url_for('shops') }}" class="btn btn-primary">ショップ一覧</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">在庫管理</h5>
+                    <p class="card-text">各ショップの農作物在庫を管理</p>
+                    <a href="{{ url_for('stock') }}" class="btn btn-primary">在庫一覧</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
