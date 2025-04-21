@@ -1,0 +1,38 @@
+<!-- templates/staff.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>担当者一覧</h2>
+<a href="{{ url_for('add_staff') }}" class="btn btn-success mb-3">担当者を追加</a>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ユーザー名</th>
+                <th>名前</th>
+                <th>メールアドレス</th>
+                <th>電話番号</th>
+                <th>役割</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in staff %}
+            <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.username }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.email }}</td>
+                <td>{{ s.phone }}</td>
+                <td>{{ '管理者' if s.role == 'admin' else '担当者' }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">登録されている担当者がありません</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
