@@ -1,0 +1,23 @@
+<!-- templates/edit_stock.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>在庫を編集</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="product">農作物</label>
+        <input type="text" class="form-control" id="product" value="{{ stock.product.name }} ({{ stock.product.farmer.name }})" readonly>
+    </div>
+    <div class="form-group">
+        <label for="shop">ショップ</label>
+        <input type="text" class="form-control" id="shop" value="{{ stock.shop.name }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="quantity">数量</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" min="0" value="{{ stock.quantity }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">更新</button>
+    <a href="{{ url_for('stock') }}" class="btn btn-secondary">キャンセル</a>
+</form>
+{% endblock %}
