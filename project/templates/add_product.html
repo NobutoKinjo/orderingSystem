@@ -1,0 +1,28 @@
+<!-- templates/add_product.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>農作物を追加</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="name">農作物名</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="description">説明</label>
+        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="farmer_id">農家</label>
+        <select class="form-control" id="farmer_id" name="farmer_id" required>
+            <option value="">選択してください</option>
+            {% for farmer in farmers %}
+            <option value="{{ farmer.id }}">{{ farmer.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">保存</button>
+    <a href="{{ url_for('products') }}" class="btn btn-secondary">キャンセル</a>
+</form>
+{% endblock %}
