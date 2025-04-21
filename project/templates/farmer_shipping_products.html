@@ -1,0 +1,33 @@
+<!-- templates/farmer_shipping_products.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ farmer.name }} - 発送可能な農作物の登録</h2>
+
+<form method="POST">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">発送できる農作物と数量を入力してください</h5>
+            <p class="card-text text-muted">入力後、送信ボタンを押すと担当者にメール通知されます。</p>
+            
+            {% for product in products %}
+            <div class="form-group row">
+                <label for="quantity_{{ product.id }}" class="col-sm-4 col-form-label">{{ product.name }}</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="quantity_{{ product.id }}" name="quantity_{{ product.id }}" min="0" value="0">
+                </div>
+            </div>
+            {% else %}
+            <div class="alert alert-warning">
+                この農家には登録されている農作物がありません。先に農作物を登録してください。
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% if products %}
+    <button type="submit" class="btn btn-primary">送信</button>
+    {% endif %}
+    <a href="{{ url_for('farmers') }}" class="btn btn-secondary">キャンセル</a>
+</form>
+{% endblock %}
